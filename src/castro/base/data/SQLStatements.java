@@ -29,6 +29,7 @@ import castro.base.plugin.CPlugin;
 
 /**
  * SQL statements holder written by DooBLER
+ * http://github.com/DooBLER
  */
 public class SQLStatements extends SQLConnection
 {

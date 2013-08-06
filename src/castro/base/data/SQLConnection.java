@@ -28,6 +28,7 @@ import castro.base.plugin.CPlugin;
 
 /**
  * SQL connection holder written by DooBLER
+ * http://github.com/DooBLER
  */
 public class SQLConnection
 {
