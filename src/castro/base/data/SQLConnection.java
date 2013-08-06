@@ -147,91 +147,9 @@ public class SQLConnection
      	this.open();
         
         return this.c; 
-    } 
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	/*
-	private Connection open()
-	{
-		try { 
-			Class.forName("com.mysql.jdbc.Driver"); 
-			this.c = DriverManager.getConnection("jdbc:mysql://" + this.hostname +
-												 ":" + this.port + "/" + this.database + 
-												 "?autoReconnect=false", 
-												 this.user, this.password); 
-			return c; 
-		} catch (SQLException e) { 
-			cplugin.log("Could not connect to MySQL server! because: " + e.getMessage(), true); 
-		} catch (ClassNotFoundException e) { 
-			cplugin.log("JDBC Driver not found!", true); 
-		} 
-		return this.c;
-	}
-
-
-	protected Connection getConn()
-	{
-		boolean isClosed = true;
-		boolean isValid = false;
-		boolean exists = (this.c != null);
-		
-		
-		if (exists)
-		{
-			if (this.lastcheck+(MIN_CHECK_TIME*1000) > System.currentTimeMillis())
-				return this.c;
-			else
-				this.lastcheck = System.currentTimeMillis();
-			
-			try {
-				isClosed = this.c.isClosed();
-			} catch (SQLException e) {
-				isClosed = true;
-				e.printStackTrace();
-				printErrors(e);
-			}
-
-			if (!isClosed)
-			{
-				try {
-					isValid = this.c.isValid(VALID_TIMEOUT);
-				} catch (SQLException e) { // Don't print stack trace because it's valid to lose idle connections to the server and have to restart them.
-					isValid = false;
-				}
-			}
-		}
-		
-		// Jeœli wszystko ok to wszystko jest poprawnie.
-		if (exists && !isClosed && isValid)
-			return this.c;
-
-		// Cleanup after ourselves for GC and MySQL's sake
-		if (exists && !isClosed) {
-			try {
-				this.c.close();
-			} catch (SQLException ex) // This is a housekeeping exercise, ignore errors 
-			{}
-		}
-		
-		// Ponowne ³¹czenie.
-	 	this.open();
-		return this.c; 
-	}
-	*/
-	
-	
+    }
+    
+    
 	protected void printErrors(SQLException ex)
 	{
 		cplugin.log("SQLException: " + ex.getMessage(), true);
