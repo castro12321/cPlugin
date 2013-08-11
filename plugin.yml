@@ -1,3 +1,4 @@
 name: Base_cPlugin
 main: castro.base.Plugin
 version: 1.2.0
+load: STARTUP
