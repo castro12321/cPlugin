@@ -30,7 +30,7 @@ public abstract class CBasePlugin extends JavaPlugin
 	
 	
 	@Override
-	public final boolean onCommand(CommandSender sender, Command command, String label, String[] args)
+	public boolean onCommand(CommandSender sender, Command command, String label, String[] args)
 	{
 		return commandMgr.onCommand(sender, command, args);
 	}
