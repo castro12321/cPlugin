@@ -32,7 +32,9 @@ public abstract class CPlugin extends CMessenger
 	
 	
 	private final void initBase(CPluginSettings settings)
-	{
+	{		
+		logger = getLogger();
+		
 		if(settings.useConfig)
 		{
 			saveDefaultConfig();

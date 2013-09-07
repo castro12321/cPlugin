@@ -25,12 +25,7 @@ import org.bukkit.entity.Player;
 
 public abstract class CMessenger extends CBasePlugin
 {
-	private Logger logger;
-	
-	public CMessenger()
-	{
-		logger = Logger.getLogger("Minecraft");
-	}
+	protected Logger logger;
 	
 	
 	private String prepareMsg(String msg, boolean pdf)
