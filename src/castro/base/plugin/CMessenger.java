@@ -64,7 +64,7 @@ public abstract class CMessenger extends CBasePlugin
 	
 	
 	public boolean log(String msg)
-	{ return baseinstance.log(msg, true); }
+	{ return log(msg, true); }
 	public boolean log(String msg, boolean pdf)
 	{
 		logger.info(prepareMsg(msg, pdf));
