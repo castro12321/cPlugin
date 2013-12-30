@@ -32,7 +32,9 @@ public abstract class CBasePlugin extends JavaPlugin
 	@Override
 	public boolean onCommand(CommandSender sender, Command command, String label, String[] args)
 	{
-		return commandMgr.onCommand(sender, command, args);
+		if(commandMgr != null)
+			return commandMgr.onCommand(sender, command, args);
+		return true;
 	}
 	
 	
