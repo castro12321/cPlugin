@@ -17,15 +17,20 @@
 
 package castro.base.plugin;
 
+import net.milkbowl.vault.economy.Economy;
+import net.milkbowl.vault.permission.Permission;
+
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.event.Listener;
+import org.bukkit.plugin.RegisteredServiceProvider;
 
 
 public abstract class CPlugin extends CMessenger
 {
 	public FileConfiguration con; // config
-	
+	public static Economy economy;
+	public static Permission permissions;
 	
 	protected abstract void init();
 	protected abstract CPluginSettings getSettings();
@@ -51,6 +56,13 @@ public abstract class CPlugin extends CMessenger
 	public final void onEnable()
 	{
 		baseinstance = this;
+		
+		RegisteredServiceProvider<Economy> economyProvider = getServer().getServicesManager().getRegistration(net.milkbowl.vault.economy.Economy.class);
+		if (economyProvider != null && economy == null)
+			economy = economyProvider.getProvider();
+		RegisteredServiceProvider<Permission> permissionProvider = getServer().getServicesManager().getRegistration(net.milkbowl.vault.permission.Permission.class);
+		if (permissionProvider != null && permissions == null)
+			permissions = permissionProvider.getProvider();
 		
 		initBase(getSettings());
 		init();
