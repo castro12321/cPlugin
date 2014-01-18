@@ -24,6 +24,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.RegisteredServiceProvider;
+import org.bukkit.plugin.ServicesManager;
 
 
 public abstract class CPlugin extends CPluginMsg
@@ -42,10 +43,11 @@ public abstract class CPlugin extends CPluginMsg
 		baseinstance = this;
 		super.initBase();
 		
-		RegisteredServiceProvider<Economy> economyProvider = getServer().getServicesManager().getRegistration(net.milkbowl.vault.economy.Economy.class);
+		ServicesManager services = getServer().getServicesManager();
+		RegisteredServiceProvider<Economy> economyProvider = services.getRegistration(net.milkbowl.vault.economy.Economy.class);
 		if (economyProvider != null && economy == null)
 			economy = economyProvider.getProvider();
-		RegisteredServiceProvider<Permission> permissionProvider = getServer().getServicesManager().getRegistration(net.milkbowl.vault.permission.Permission.class);
+		RegisteredServiceProvider<Permission> permissionProvider = services.getRegistration(net.milkbowl.vault.permission.Permission.class);
 		if (permissionProvider != null && permissions == null)
 			permissions = permissionProvider.getProvider();
 		
