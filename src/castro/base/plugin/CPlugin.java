@@ -17,8 +17,6 @@
 
 package castro.base.plugin;
 
-import org.bukkit.command.CommandSender;
-
 
 public abstract class CPlugin extends CPluginMsg
 {
@@ -43,14 +41,5 @@ public abstract class CPlugin extends CPluginMsg
 	protected CPlugin getBaseInstance()
 	{
 		return this;
-	}
-	
-	
-	public static boolean dispatchConsoleCommand(String command)
-	{ return dispatchCommand(baseinstance.getServer().getConsoleSender(), command); }
-	public static boolean dispatchCommand(CommandSender sender, String command)
-	{
-		baseinstance.getServer().dispatchCommand(sender, command);
-		return true;
 	}
 }

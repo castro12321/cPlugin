@@ -23,7 +23,7 @@ import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-public abstract class CPluginMsg extends CPluginBase
+public abstract class CPluginMsg extends CPluginAliases
 {
 	private Logger logger;
 	
@@ -49,7 +49,7 @@ public abstract class CPluginMsg extends CPluginBase
 	{ return broadcast(msg, true); }
 	public boolean broadcast(String msg, boolean pdf)
 	{
-		getServer().broadcastMessage(prepareMsg(msg, pdf));
+		server.broadcastMessage(prepareMsg(msg, pdf));
 		return true;
 	}
 	
@@ -59,7 +59,7 @@ public abstract class CPluginMsg extends CPluginBase
 	public boolean sendMessage(CommandSender sender, String msg)	{ return sendMessage(sender, msg, true); }
 	public boolean sendMessage(String target, String msg, boolean pdf)
 	{
-		CommandSender sender = target.equalsIgnoreCase("CONSOLE") ? getServer().getConsoleSender() : getServer().getPlayerExact(target);
+		CommandSender sender = target.equalsIgnoreCase("CONSOLE") ? server.getConsoleSender() : getPlayerExact(target);
 		return sendMessage(sender, msg, pdf);
 	}
 	public boolean sendMessage(Player target, String msg, boolean pdf)
