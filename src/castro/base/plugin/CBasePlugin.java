@@ -42,17 +42,4 @@ public abstract class CBasePlugin extends JavaPlugin
 	{
 		return "&f[&9" + getDescription().getName() + "&f] ";
 	}
-	
-	
-	public static String joinArgs(String[] array)
-	{ return joinArgs(array, 0); }
-	public static String joinArgs(String[] array, int start)
-	{
-		String ret = "";
-		if(array.length == 0)//<= start)
-			return "";
-		for(int i=start; i < array.length; ++i)
-			ret += array[i] + " ";
-		return ret.substring(0, ret.length()-1);
-	}
 }

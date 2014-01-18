@@ -78,19 +78,6 @@ public abstract class CPlugin extends CMessenger
 	}
 	
 	
-	private static long tn = 0;
-	public static void reset()
-	{
-		tn = System.nanoTime();
-	}
-	public static void timeStep(String msg)
-	{
-		long now = System.nanoTime();
-		float diff = now-tn;
-		baseinstance.sendMessage("CONSOLE", "DEBUG " + (diff/1000000.f) + "ms " + msg, false);
-	}
-	
-	
 	public static String joinArgs(String[] array)
 	{ return joinArgs(array, 0); }
 	public static String joinArgs(String[] array, int start)

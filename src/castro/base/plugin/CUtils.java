@@ -41,4 +41,30 @@ public class CUtils
 		float currentTimeInTicks = (24000.f*timeOfDay) + timeOffset;
 		return (int)currentTimeInTicks;
 	}
+	
+	
+	public static String joinArgs(String[] array)
+	{ return joinArgs(array, 0); }
+	public static String joinArgs(String[] array, int start)
+	{
+		String ret = "";
+		if(array.length == 0)//<= start)
+			return "";
+		for(int i=start; i < array.length; ++i)
+			ret += array[i] + " ";
+		return ret.substring(0, ret.length()-1);
+	}
+	
+	
+	private static long tn = 0;
+	public static void reset()
+	{
+		tn = System.nanoTime();
+	}
+	public static void timeStep(String msg)
+	{
+		long now = System.nanoTime();
+		float diff = now-tn;
+		CPlugin.baseinstance.log("DEBUG " + (diff/1000000.f) + "ms " + msg, false);
+	}
 }
