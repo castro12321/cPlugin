@@ -17,56 +17,18 @@
 
 package castro.base.plugin;
 
-import net.milkbowl.vault.economy.Economy;
-import net.milkbowl.vault.permission.Permission;
-
 import org.bukkit.command.CommandSender;
-import org.bukkit.configuration.file.FileConfiguration;
-import org.bukkit.event.Listener;
-import org.bukkit.plugin.RegisteredServiceProvider;
-import org.bukkit.plugin.ServicesManager;
 
 
 public abstract class CPlugin extends CPluginMsg
 {
-	public FileConfiguration con; // config
-	public static Economy economy;
-	public static Permission permissions;
-	
 	protected abstract void init();
-	protected abstract CPluginSettings getSettings();
 	
 	
 	@Override
 	protected void initBase()
 	{
-		baseinstance = this;
 		super.initBase();
-		
-		ServicesManager services = getServer().getServicesManager();
-		RegisteredServiceProvider<Economy> economyProvider = services.getRegistration(net.milkbowl.vault.economy.Economy.class);
-		if (economyProvider != null && economy == null)
-			economy = economyProvider.getProvider();
-		RegisteredServiceProvider<Permission> permissionProvider = services.getRegistration(net.milkbowl.vault.permission.Permission.class);
-		if (permissionProvider != null && permissions == null)
-			permissions = permissionProvider.getProvider();
-		
-		initBase(getSettings());
-	}
-	
-	
-	private final void initBase(CPluginSettings settings)
-	{		
-		if(settings.useConfig)
-		{
-			saveDefaultConfig();
-			con = getConfig();
-		}
-		
-		commandMgr = settings.commandMgr;
-		
-		for(Listener listener : settings.listeners)
-			getServer().getPluginManager().registerEvents(listener, this);
 	}
 	
 	
@@ -74,6 +36,13 @@ public abstract class CPlugin extends CPluginMsg
 	{
 		initBase();
 		init();
+	}
+	
+	
+	@Override
+	protected CPlugin getBaseInstance()
+	{
+		return this;
 	}
 	
 	

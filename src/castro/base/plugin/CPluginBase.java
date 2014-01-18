@@ -17,8 +17,15 @@
 
 package castro.base.plugin;
 
+import net.milkbowl.vault.economy.Economy;
+import net.milkbowl.vault.permission.Permission;
+
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
+import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.event.Listener;
+import org.bukkit.plugin.RegisteredServiceProvider;
+import org.bukkit.plugin.ServicesManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import castro.base.GenericCommandMgr;
@@ -26,11 +33,45 @@ import castro.base.GenericCommandMgr;
 public abstract class CPluginBase extends JavaPlugin
 {
 	public static CPlugin baseinstance;
-	protected GenericCommandMgr commandMgr;
+	
+	private GenericCommandMgr commandMgr;
+	public FileConfiguration con; // config
+	public static Economy economy;
+	public static Permission permissions;
+	
+	
+	protected abstract CPluginSettings getSettings();
+	protected abstract CPlugin         getBaseInstance();
+	
 	
 	protected void initBase()
 	{
+		baseinstance = getBaseInstance();
 		
+		ServicesManager services = getServer().getServicesManager();
+		RegisteredServiceProvider<Economy> economyProvider = services.getRegistration(net.milkbowl.vault.economy.Economy.class);
+		if (economyProvider != null && economy == null)
+			economy = economyProvider.getProvider();
+		RegisteredServiceProvider<Permission> permissionProvider = services.getRegistration(net.milkbowl.vault.permission.Permission.class);
+		if (permissionProvider != null && permissions == null)
+			permissions = permissionProvider.getProvider();
+		
+		initBase(getSettings());
+	}
+	
+	
+	private final void initBase(CPluginSettings settings)
+	{		
+		if(settings.useConfig)
+		{
+			saveDefaultConfig();
+			con = getConfig();
+		}
+		
+		commandMgr = settings.commandMgr;
+		
+		for(Listener listener : settings.listeners)
+			getServer().getPluginManager().registerEvents(listener, this);
 	}
 	
 	
