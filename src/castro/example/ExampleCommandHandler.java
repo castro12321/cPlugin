@@ -4,6 +4,7 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 
 import castro.base.GenericCommandMgr;
+import castro.base.plugin.CUtils;
 
 
 // All commands caught by Plugin will go here
@@ -25,7 +26,7 @@ public class ExampleCommandHandler implements GenericCommandMgr
 		String commandname = command.getName();
 		// joinArgs is static method that joins array into one string.
 		// Array ["a", "b", "c"] will be proccessed into "a b c"
-		String joinedargs = ExamplePlugin.joinArgs(args);
+		String joinedargs = CUtils.joinArgs(args);
 		
 		// Log the command to console
 		plugin.log(playername + " typed " + commandname + " " + joinedargs);
