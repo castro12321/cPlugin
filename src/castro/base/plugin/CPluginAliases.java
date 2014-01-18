@@ -86,7 +86,7 @@ public abstract class CPluginAliases extends CPluginBase
 	}
 	
 	
-	public void schedulerSyncRepeatingTask(Runnable runnable, long delay, long repeat)
+	public void scheduleSyncRepeatingTask(Runnable runnable, long delay, long repeat)
 	{
 		scheduler.scheduleSyncRepeatingTask(this, runnable, delay, repeat);
 	}
