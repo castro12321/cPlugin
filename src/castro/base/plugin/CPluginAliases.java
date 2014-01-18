@@ -68,7 +68,7 @@ public abstract class CPluginAliases extends CPluginBase
 	}
 	
 	
-	public void register(Listener eventListener)
+	public void registerEvents(Listener eventListener)
 	{
 		PM.registerEvents(eventListener, this);
 	}
