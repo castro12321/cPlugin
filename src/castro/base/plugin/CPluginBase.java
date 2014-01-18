@@ -23,7 +23,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import castro.base.GenericCommandMgr;
 
-public abstract class CBasePlugin extends JavaPlugin
+public abstract class CPluginBase extends JavaPlugin
 {
 	public static CPlugin baseinstance;
 	protected GenericCommandMgr commandMgr;

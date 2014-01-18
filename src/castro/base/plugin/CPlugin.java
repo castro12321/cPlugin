@@ -26,7 +26,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.plugin.RegisteredServiceProvider;
 
 
-public abstract class CPlugin extends CMessenger
+public abstract class CPlugin extends CPluginMsg
 {
 	public FileConfiguration con; // config
 	public static Economy economy;
