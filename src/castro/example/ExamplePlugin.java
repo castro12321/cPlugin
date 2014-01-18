@@ -4,6 +4,7 @@ import java.util.Random;
 
 import castro.base.plugin.CPlugin;
 import castro.base.plugin.CPluginSettings;
+import castro.base.plugin.CUtils;
 
 public class ExamplePlugin extends CPlugin 
 {
@@ -34,20 +35,20 @@ public class ExamplePlugin extends CPlugin
 		// If we want to measure how much time does function take
 		// and don't have access to profiler, we can use built-in feature
 		// First, we have to reset timer
-		reset();
+		CUtils.reset();
 		
 		// Then let's do some heavy task
 		int a = 0;
 		for(int i = 0; i < 100000; ++i)
 			a = new Random().nextInt() / 1000;
 		// Then let's see how much time it took
-		timeStep("Heavy task " + a);
+		CUtils.timeStep("Heavy task " + a);
 		
 		// Just initialize SQL
 		SQL = new ExampleSQL(this);
 		
 		// We can also check time again.
 		// Time will be counted since last timeStep()
-		timeStep("SQL init");
+		CUtils.timeStep("SQL init");
 	}
 }
