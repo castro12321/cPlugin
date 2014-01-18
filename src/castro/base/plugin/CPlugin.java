@@ -36,10 +36,25 @@ public abstract class CPlugin extends CPluginMsg
 	protected abstract CPluginSettings getSettings();
 	
 	
+	@Override
+	protected void initBase()
+	{
+		baseinstance = this;
+		super.initBase();
+		
+		RegisteredServiceProvider<Economy> economyProvider = getServer().getServicesManager().getRegistration(net.milkbowl.vault.economy.Economy.class);
+		if (economyProvider != null && economy == null)
+			economy = economyProvider.getProvider();
+		RegisteredServiceProvider<Permission> permissionProvider = getServer().getServicesManager().getRegistration(net.milkbowl.vault.permission.Permission.class);
+		if (permissionProvider != null && permissions == null)
+			permissions = permissionProvider.getProvider();
+		
+		initBase(getSettings());
+	}
+	
+	
 	private final void initBase(CPluginSettings settings)
 	{		
-		logger = getLogger();
-		
 		if(settings.useConfig)
 		{
 			saveDefaultConfig();
@@ -55,16 +70,7 @@ public abstract class CPlugin extends CPluginMsg
 	
 	public final void onEnable()
 	{
-		baseinstance = this;
-		
-		RegisteredServiceProvider<Economy> economyProvider = getServer().getServicesManager().getRegistration(net.milkbowl.vault.economy.Economy.class);
-		if (economyProvider != null && economy == null)
-			economy = economyProvider.getProvider();
-		RegisteredServiceProvider<Permission> permissionProvider = getServer().getServicesManager().getRegistration(net.milkbowl.vault.permission.Permission.class);
-		if (permissionProvider != null && permissions == null)
-			permissions = permissionProvider.getProvider();
-		
-		initBase(getSettings());
+		initBase();
 		init();
 	}
 	

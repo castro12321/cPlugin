@@ -28,6 +28,11 @@ public abstract class CPluginBase extends JavaPlugin
 	public static CPlugin baseinstance;
 	protected GenericCommandMgr commandMgr;
 	
+	protected void initBase()
+	{
+		
+	}
+	
 	
 	@Override
 	public boolean onCommand(CommandSender sender, Command command, String label, String[] args)

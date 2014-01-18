@@ -25,7 +25,16 @@ import org.bukkit.entity.Player;
 
 public abstract class CPluginMsg extends CPluginBase
 {
-	protected Logger logger;
+	private Logger logger;
+	
+	
+	@Override
+	protected void initBase()
+	{
+		super.initBase();
+		
+		logger = getLogger();
+	}
 	
 	
 	private String prepareMsg(String msg, boolean pdf)
