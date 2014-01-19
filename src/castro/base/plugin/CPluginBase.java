@@ -86,6 +86,6 @@ public abstract class CPluginBase extends JavaPlugin
 	
 	public String getPdf()
 	{
-		return "&f[&9" + getDescription().getName() + "&f] ";
+		return "&f[&9" + getDescription().getName() + "&f]&7 ";
 	}
 }

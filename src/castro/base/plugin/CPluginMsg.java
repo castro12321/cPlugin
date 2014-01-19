@@ -17,23 +17,23 @@
 
 package castro.base.plugin;
 
-import java.util.logging.Logger;
-
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.entity.Player;
 
 public abstract class CPluginMsg extends CPluginAliases
 {
-	private Logger logger;
-	
+	//private Logger logger;
+	private ConsoleCommandSender consoleSender;
 	
 	@Override
 	protected void initBase()
 	{
 		super.initBase();
 		
-		logger = getLogger();
+		consoleSender = getServer().getConsoleSender();
+		//logger = getLogger();
 	}
 	
 	
@@ -76,7 +76,8 @@ public abstract class CPluginMsg extends CPluginAliases
 	{ return log(msg, true); }
 	public boolean log(String msg, boolean pdf)
 	{
-		logger.info(prepareMsg(msg, pdf));
+		sendMessage(consoleSender, msg, pdf);
+		//logger.info(prepareMsg(msg, pdf));
 		return true;
 	}
 }
