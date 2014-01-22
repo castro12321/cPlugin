@@ -18,6 +18,8 @@
 package castro.base.plugin;
 
 import java.util.Calendar;
+import java.util.Collection;
+import java.util.Map;
 
 
 public class CUtils
@@ -56,15 +58,53 @@ public class CUtils
 	}
 	
 	
+	
 	private static long tn = 0;
+	// Reset counter for timeStep
 	public static void reset()
 	{
 		tn = System.nanoTime();
 	}
+	// Reads diff between this and last method calls
 	public static void timeStep(String msg)
 	{
 		long now = System.nanoTime();
 		float diff = now-tn;
 		CPlugin.baseinstance.log("DEBUG " + (diff/1000000.f) + "ms " + msg, false);
+	}
+	
+	
+	// Returns nearest lower value from map in comparison to searchedKey. defaultValue if not found.
+	public static <K extends Comparable<K>, V> V getNearestLowerValue(Map<K, V> map, final K searchedKey, final V defaultValue)
+	{
+		K key = getNearestLowerKey(map, searchedKey);
+		if(key != null)
+			return map.get(key);
+		return defaultValue;
+	}
+	
+	
+	// Returns nearest lower key from map in comparison to searchedKey.
+	public static <K extends Comparable<K>> K getNearestLowerKey(Map<K, ?> map, K searchedKey)
+	{
+		K maxKey = null;
+		Collection<K> keys = map.keySet();
+		for(K key : keys)
+			if(searchedKey.compareTo(key) > 0)
+    			if(maxKey == null) // If not set yet
+    				maxKey = key;
+    			else if(key.compareTo(maxKey) > 0)
+    				maxKey = key;
+		return maxKey;
+	}
+	
+	
+	
+	public static <V> V get(Map<?, V> map, Object key, V defaultValue)
+	{
+		V value = map.get(key);
+		if(value == null)
+			return defaultValue;
+		return value;
 	}
 }
