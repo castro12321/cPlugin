@@ -90,10 +90,10 @@ public class CUtils
 		K maxKey = null;
 		Collection<K> keys = map.keySet();
 		for(K key : keys)
-			if(searchedKey.compareTo(key) > 0)
+			if(searchedKey.compareTo(key) >= 0)
     			if(maxKey == null) // If not set yet
     				maxKey = key;
-    			else if(key.compareTo(maxKey) > 0)
+    			else if(key.compareTo(maxKey) >= 0)
     				maxKey = key;
 		return maxKey;
 	}
