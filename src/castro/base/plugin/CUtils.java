@@ -17,6 +17,8 @@
 
 package castro.base.plugin;
 
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.Calendar;
 import java.util.Collection;
 import java.util.Map;
@@ -106,5 +108,40 @@ public class CUtils
 		if(value == null)
 			return defaultValue;
 		return value;
+	}
+	
+	
+	@SuppressWarnings("unchecked")
+    public static <T> T convert(Object o, Class<T> targetClass)
+	{
+		try
+        {
+			String s = o.toString();
+			if(targetClass.equals(String.class))
+				return (T)s;
+			Method valueOf = targetClass.getMethod("valueOf", String.class); 
+	        return (T)valueOf.invoke(null, s);
+        }
+        catch(IllegalAccessException e)
+        {
+	        e.printStackTrace();
+        }
+        catch(IllegalArgumentException e)
+        {
+	        e.printStackTrace();
+        }
+        catch(InvocationTargetException e)
+        {
+	        e.printStackTrace();
+        }
+        catch(NoSuchMethodException e)
+        {
+	        e.printStackTrace();
+        }
+        catch(SecurityException e)
+        {
+	        e.printStackTrace();
+        }
+		return null;
 	}
 }
