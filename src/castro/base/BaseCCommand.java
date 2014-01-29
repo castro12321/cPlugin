@@ -5,6 +5,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import castro.base.plugin.CPlugin;
+import castro.base.plugin.CUtils;
 
 public abstract class BaseCCommand
 {
@@ -48,6 +49,14 @@ public abstract class BaseCCommand
 		if(prepare())
 			execute();
 		return true;
+	}
+	
+	
+	protected <T> T getArg(int index, Class<T> type, T defaultValue)
+	{
+		if(args.length <= index)
+			return defaultValue;
+		return CUtils.convert(args[index], type);
 	}
 	
 	
