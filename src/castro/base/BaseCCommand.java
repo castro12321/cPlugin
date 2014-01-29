@@ -35,6 +35,10 @@ public abstract class BaseCCommand
 	
 	public boolean run()
 	{
+		if(onlyPlayer())
+			if(senderPlayer == null)
+				return plugin.sendMessage(sender, "&This command is not available in console");
+		
 		if(!senderHasPermissions())
 			return plugin.sendMessage(sender, "&cYou don't have access to this command");
 		
