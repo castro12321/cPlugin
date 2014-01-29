@@ -17,10 +17,10 @@
 
 package castro.base.plugin;
 
+/*
 import org.bukkit.entity.Player;
 
 import castro.base.Plugin;
-
 
 public class TellRaw
 {
@@ -68,3 +68,4 @@ public class TellRaw
 		return null;
 	}
 }
+*/
