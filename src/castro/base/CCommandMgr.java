@@ -15,18 +15,33 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package castro.base.plugin;
+package castro.base;
 
-import java.util.ArrayList;
-import java.util.List;
+import org.bukkit.command.Command;
+import org.bukkit.command.CommandSender;
 
-import org.bukkit.event.Listener;
+import castro.base.plugin.CPlugin;
 
-import castro.base.CCommandMgr;
-
-public class CPluginSettings
+public abstract class CCommandMgr
 {
-	public boolean useConfig        = false;
-	public List<Listener> listeners = new ArrayList<>();
-	public CCommandMgr commandMgr   = null;
+	private final CPlugin plugin;
+	protected abstract BaseCCommand getCommand(CommandSender sender, Command command, String[] args);
+	
+	
+	public CCommandMgr(CPlugin plugin)
+	{
+		this.plugin = plugin;
+	}
+	
+	
+	public boolean onCommand(CommandSender sender, Command command, String[] args)
+	{
+		BaseCCommand ccommand = getCommand(sender, command, args);
+		if(ccommand != null)
+		{
+			ccommand.baseInit(plugin, sender, command, args);
+			return ccommand.execute();
+		}
+		return false;
+	}
 }

@@ -28,13 +28,13 @@ import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.ServicesManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import castro.base.GenericCommandMgr;
+import castro.base.CCommandMgr;
 
 public abstract class CPluginBase extends JavaPlugin
 {
 	public static CPlugin baseinstance;
 	
-	private GenericCommandMgr commandMgr;
+	private CCommandMgr commandMgr;
 	public FileConfiguration con; // config
 	public static Economy economy;
 	public static Permission permissions;
