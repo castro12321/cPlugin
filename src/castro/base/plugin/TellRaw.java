@@ -17,6 +17,10 @@
 
 package castro.base.plugin;
 
+public class TellRaw
+{
+}
+
 /*
 import org.bukkit.entity.Player;
 
