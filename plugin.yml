@@ -1,5 +1,5 @@
 name: Base_cPlugin
 main: castro.base.Plugin
-version: 1.3.0
+version: 1.4.0
 load: STARTUP
 softdepend: [Vault]
