@@ -40,7 +40,7 @@ public abstract class CCommandMgr
 		if(ccommand != null)
 		{
 			ccommand.baseInit(plugin, sender, command, args);
-			return ccommand.execute();
+			return ccommand.run();
 		}
 		return false;
 	}
