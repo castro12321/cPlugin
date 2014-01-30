@@ -56,7 +56,7 @@ public abstract class BaseCCommand
 	{
 		if(args.length <= index)
 			return defaultValue;
-		return CUtils.convert(args[index], type);
+		return CUtils.convert(args[index], type, defaultValue);
 	}
 	
 	

@@ -111,8 +111,10 @@ public class CUtils
 	}
 	
 	
+	public static <T> T convert(Object o, Class<T> targetClass)
+	{ return convert(o, targetClass, null); }
 	@SuppressWarnings("unchecked")
-    public static <T> T convert(Object o, Class<T> targetClass)
+    public static <T> T convert(Object o, Class<T> targetClass, T defaultValue)
 	{
 		try
         {
@@ -128,7 +130,6 @@ public class CUtils
         }
         catch(IllegalArgumentException e)
         {
-	        e.printStackTrace();
         }
         catch(InvocationTargetException e)
         {
@@ -142,6 +143,6 @@ public class CUtils
         {
 	        e.printStackTrace();
         }
-		return null;
+		return defaultValue;
 	}
 }
