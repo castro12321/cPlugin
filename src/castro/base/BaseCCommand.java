@@ -52,6 +52,11 @@ public abstract class BaseCCommand
 	}
 	
 	
+	
+	protected <T> T getArg(int index, Class<T> type)
+	{
+		return getArg(index, type, null);
+	}
 	protected <T> T getArg(int index, Class<T> type, T defaultValue)
 	{
 		if(args.length <= index)
