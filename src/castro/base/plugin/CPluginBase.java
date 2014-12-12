@@ -15,7 +15,7 @@ import castro.base.CCommandMgr;
 
 public abstract class CPluginBase extends JavaPlugin
 {
-	private CCommandMgr commandMgr;
+	public CCommandMgr commandMgr;
 	public FileConfiguration con; // config
 	
 	protected abstract CPluginSettings getSettings();

@@ -10,7 +10,7 @@ import org.bukkit.command.CommandSender;
 
 import castro.base.plugin.CPlugin;
 
-public abstract class CCommandMgr
+public abstract class CCommandMgr implements GenericCommandMgr
 {
 	private final CPlugin plugin;
 	protected abstract BaseCCommand getCommand(CommandSender sender, Command command, String[] args);
@@ -21,10 +21,15 @@ public abstract class CCommandMgr
 		this.plugin = plugin;
 	}
 	
-	
+	@Override
 	public boolean onCommand(CommandSender sender, Command command, String[] args)
 	{
 		BaseCCommand ccommand = getCommand(sender, command, args);
+		return onCommand(ccommand, sender, command, args);
+	}
+	
+	public boolean onCommand(BaseCCommand ccommand, CommandSender sender, Command command, String[] args)
+	{
 		if(ccommand != null)
 		{
 			ccommand.baseInit(plugin, sender, command, args);
