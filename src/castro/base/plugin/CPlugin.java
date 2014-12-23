@@ -71,9 +71,10 @@ public abstract class CPlugin extends CPluginMsg
 		return permissions.has((World)null, player.getName(), permission);
 	}
 	
+	@SuppressWarnings("deprecation")
     public static boolean hasPermission(String playername, String permission)
 	{
-		return hasPermission(getOfflinePlayer(playername), permission);
+    	return permissions.has((World)null, playername, permission);
 	}
     
     @SuppressWarnings("deprecation")
